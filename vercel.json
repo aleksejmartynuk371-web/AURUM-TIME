@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/AURUM_TIME_v8/$1"
+      "destination": "/shop.html"
     }
   ]
 }
