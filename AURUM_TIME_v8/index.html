@@ -9,280 +9,45 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#050505;--panel:#0b0b0b;--panel2:#10100f;--gold:#b98928;--gold2:#e6b94f;
-  --gold3:#f1d27a;--cream:#f5f0e5;--muted:#9b958a;--line:#28231b;
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,Arial,sans-serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#fff 0.5px,transparent .5px);background-size:5px 5px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 65%)}
-a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}.wrap{width:min(1320px,calc(100% - 52px));margin:auto}
-.gold{color:var(--gold2)}.serif{font-family:"Cormorant Garamond",serif}
-header{position:sticky;top:0;z-index:50;background:rgba(5,5,5,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav{height:92px;display:grid;grid-template-columns:260px 1fr 170px;align-items:center;gap:24px}
-.brand{height:78px;display:flex;align-items:center}.brand img{width:218px;height:82px;object-fit:contain;object-position:left center}
-.navlinks{display:flex;justify-content:center;gap:32px;height:100%;align-items:center}
-.navlinks a{height:100%;display:flex;align-items:center;position:relative;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:#d6d0c5}
-.navlinks a:after{content:"";position:absolute;bottom:19px;left:0;right:0;height:1px;background:var(--gold2);transform:scaleX(0);transition:.25s}
-.navlinks a:hover,.navlinks a.active{color:var(--gold2)}.navlinks a:hover:after,.navlinks a.active:after{transform:scaleX(1)}
-.nav-actions{display:flex;justify-content:flex-end;gap:10px}
-.nav-icon{width:36px;height:36px;border:1px solid var(--line);background:#080808;color:var(--gold2);display:grid;place-items:center;border-radius:50%;cursor:pointer}
-.hero{min-height:690px;display:grid;grid-template-columns:46% 54%;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-.hero-copy{padding:105px 35px 80px 0;position:relative;z-index:3}
-.kicker{font-size:11px;letter-spacing:3.5px;color:var(--gold2);font-weight:700;text-transform:uppercase}
-.hero h1{font:600 clamp(64px,7vw,105px)/.78 "Cormorant Garamond",serif;letter-spacing:-2px;text-transform:uppercase;margin:22px 0}
-.hero h1 span{color:var(--gold2)}
-.hero-rule{display:flex;align-items:center;gap:13px;margin:25px 0}.hero-rule i{width:58px;height:1px;background:var(--gold2)}.hero-rule b{width:5px;height:5px;background:var(--gold2);transform:rotate(45deg)}
-.hero p{max-width:520px;color:#aaa49a;line-height:1.9;font-size:14px}
-.actions{display:flex;gap:12px;margin:30px 0 42px;flex-wrap:wrap}
-.btn{border:1px solid var(--gold);background:transparent;color:var(--cream);padding:15px 25px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:.25s}
-.btn:hover{transform:translateY(-2px);border-color:var(--gold3)}.btn.primary{background:linear-gradient(135deg,#edc55e,#a87418);color:#080808}
-.hero-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:620px}
-.hero-note{border-left:1px solid var(--gold);padding-left:12px}.hero-note b{display:block;color:var(--gold2);font-size:10px;letter-spacing:1px;text-transform:uppercase}.hero-note span{display:block;color:#777168;font-size:10px;margin-top:5px;line-height:1.5}
-.hero-visual{position:relative;min-height:690px;overflow:hidden;background:#080807}
-.hero-visual:before{content:"";position:absolute;inset:0;background:
-linear-gradient(90deg,#050505 0%,rgba(5,5,5,.55) 12%,transparent 42%),
-linear-gradient(0deg,#050505 0%,transparent 28%),
-radial-gradient(circle at 68% 45%,rgba(193,145,43,.18),transparent 30%),
-repeating-linear-gradient(120deg,transparent 0 110px,rgba(226,183,75,.035) 111px 112px)}
-.hero-visual:after{content:"AURUM";position:absolute;right:-60px;bottom:-110px;color:rgba(230,185,79,.035);font:700 300px/1 "Cormorant Garamond",serif;letter-spacing:-15px}
-.hero-photo{position:absolute;right:2%;top:5%;width:88%;height:91%;object-fit:cover;object-position:center;filter:saturate(.75) contrast(1.08) brightness(.65);opacity:.78}
-.hero-photo-mask{position:absolute;inset:0;background:radial-gradient(ellipse at 62% 48%,transparent 15%,rgba(0,0,0,.2) 48%,rgba(0,0,0,.9) 100%)}
-.gold-frame{position:absolute;right:8%;top:8%;width:66%;height:78%;border:1px solid rgba(230,185,79,.32);pointer-events:none}
-.gold-frame:before,.gold-frame:after{content:"";position:absolute;width:45px;height:45px;border-color:var(--gold2);border-style:solid}
-.gold-frame:before{left:-1px;top:-1px;border-width:1px 0 0 1px}.gold-frame:after{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
-.featurebar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:#080808}
-.feature{min-height:110px;padding:25px 22px;display:flex;align-items:center;gap:15px;border-right:1px solid var(--line)}
-.feature:last-child{border-right:0}.feature .icon{width:38px;height:38px;border:1px solid #6d531f;color:var(--gold2);display:grid;place-items:center;border-radius:50%;font-size:16px;flex:none}
-.feature b{display:block;font-size:10px;letter-spacing:1.2px;color:var(--gold2);text-transform:uppercase}.feature span{display:block;color:#777168;font-size:10px;margin-top:5px}
-.section{padding:92px 0;border-bottom:1px solid var(--line)}
-.section-head{text-align:center;margin-bottom:38px}.section-head h2{font:600 62px/.9 "Cormorant Garamond",serif;text-transform:uppercase;margin:10px 0 13px}.section-head p{color:#777168;font-size:12px}
-.filters{display:flex;justify-content:center;gap:8px;margin-bottom:30px;flex-wrap:wrap}.filter{padding:10px 17px;border:1px solid var(--line);background:#080808;color:#888177;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer}.filter.active,.filter:hover{color:var(--gold2);border-color:var(--gold)}
-.catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card{background:linear-gradient(180deg,#0d0d0c,#070707);border:1px solid var(--line);transition:.3s;overflow:hidden}.card:hover{transform:translateY(-5px);border-color:#5e4619}
-.card-media{height:325px;background:radial-gradient(circle at 50% 50%,#242015,#090909 70%);padding:12px;position:relative;overflow:hidden}.card-media img{width:100%;height:100%;object-fit:cover;transition:.4s}.card:hover .card-media img{transform:scale(1.03)}
-.badge{position:absolute;left:13px;top:13px;background:#0b0b0b;border:1px solid var(--gold);color:var(--gold2);padding:6px 8px;font-size:8px;letter-spacing:1px}
-.card-body{padding:19px}.card-tag{color:var(--gold2);font-size:8px;letter-spacing:1.6px;text-transform:uppercase}.card h3{font:600 27px/1 "Cormorant Garamond",serif;margin:8px 0 9px}.card p{color:#787269;font-size:10px;line-height:1.6;min-height:34px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.price{color:var(--gold2);font-weight:700;font-size:19px}.mini-btn{border:1px solid #574317;background:transparent;color:var(--gold2);padding:9px 12px;font-size:8px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
-.more-card{display:grid;place-items:center;min-height:100%;text-align:center;background:linear-gradient(150deg,#0b0b0a,#060606)}.more-card .plus{width:55px;height:55px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:28px;margin:auto auto 15px}.more-card b{font-size:10px;letter-spacing:2px;color:var(--gold2)}.more-card p{color:#676158;font-size:10px;max-width:170px;margin:9px auto}
-.about-grid{display:grid;grid-template-columns:44% 56%;gap:55px;align-items:center}.about-photo{height:470px;position:relative;overflow:hidden;border:1px solid var(--line);background:#080808}.about-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.58) saturate(.7)}.about-photo:after{content:"";position:absolute;inset:18px;border:1px solid rgba(230,185,79,.25)}
-.about-copy h2{text-align:left}.about-copy p{color:#9a9389;line-height:1.9;font-size:13px}.ornament{display:flex;align-items:center;gap:10px;margin:20px 0}.ornament i{height:1px;width:42px;background:var(--gold2)}.ornament b{width:5px;height:5px;background:var(--gold2);transform:rotate(45deg)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}.stat{border-top:1px solid var(--gold);padding-top:12px}.stat strong{display:block;color:var(--gold2);font:600 30px "Cormorant Garamond",serif}.stat span{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#716b62}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.info{padding:30px;border:1px solid var(--line);background:#090909;min-height:190px}.info .number{color:#604a1d;font:600 35px "Cormorant Garamond",serif}.info h3{color:var(--gold2);font:600 30px "Cormorant Garamond",serif;margin:4px 0 8px}.info p{color:#807a70;font-size:11px;line-height:1.8}
-.contacts{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contact-card{border:1px solid var(--line);background:#090909;padding:35px}.contact-card h3{font:600 43px/.9 "Cormorant Garamond",serif;margin:12px 0 22px}.contact-line{display:flex;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);font-size:12px;color:#9b958a}.contact-line b{color:var(--gold2);min-width:80px}.telegram{color:var(--gold2)}
-footer{padding:28px 0;text-align:center;color:#625e56;font-size:9px;letter-spacing:1.5px}
-.chat{position:fixed;right:24px;bottom:22px;z-index:60}.chat-box{position:absolute;right:68px;bottom:0;width:220px;background:#10100f;border:1px solid var(--line);padding:14px;font-size:10px;color:#99938a;box-shadow:0 12px 35px rgba(0,0,0,.55)}.chat-box b{color:var(--gold2)}.chat-btn{width:58px;height:58px;border-radius:50%;border:1px solid #9c711d;background:linear-gradient(135deg,#f0c45d,#ad7617);color:#090909;font-size:22px;cursor:pointer}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:100;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-box{width:min(900px,100%);max-height:92vh;overflow:auto;background:#0a0a09;border:1px solid #6d521d;position:relative}.close{position:absolute;right:12px;top:8px;border:0;background:none;color:#d8d0c4;font-size:28px;cursor:pointer;z-index:3}.product-modal{display:grid;grid-template-columns:1fr 1fr}.gallery{padding:18px}.gallery-main{height:440px;background:#080808;border:1px solid var(--line);overflow:hidden}.gallery-main img{width:100%;height:100%;object-fit:cover}.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:7px}.thumbs img{height:75px;width:100%;object-fit:cover;border:1px solid var(--line);cursor:pointer}.thumbs img.active{border-color:var(--gold2)}.product-info{padding:48px 35px 35px;border-left:1px solid var(--line)}.product-info .kicker{margin-top:15px}.product-info h3{font:600 48px/.9 "Cormorant Garamond",serif;margin:12px 0}.product-info .big-price{font-size:26px;color:var(--gold2);font-weight:700;margin:22px 0}.specs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:22px 0}.spec{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:10px}.spec:last-child{border-bottom:0}.spec span:first-child{color:#716b62}.spec span:last-child{color:#d4cec2}.order-form{display:none;padding:35px}.order-form.open{display:block}.order-form h3{font:600 43px "Cormorant Garamond",serif;margin:8px 0}.order-form p{color:#817a70;font-size:11px;line-height:1.7}.field{width:100%;background:#060606;border:1px solid var(--line);color:#fff;padding:13px;margin:6px 0;outline:none}.field:focus{border-color:var(--gold)}.back{border:0;background:none;color:#8d857a;font-size:10px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;margin-bottom:14px}
-@media(max-width:1050px){.nav{grid-template-columns:220px 1fr}.nav-actions{display:none}.navlinks{gap:18px}.catalog{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.hero-copy{padding-right:0}.hero-visual{min-height:560px}.hero-photo{width:100%}}
-@media(max-width:720px){.wrap{width:min(100% - 30px,1320px)}.nav{height:76px;display:flex}.brand img{width:175px;height:68px}.navlinks{display:none}.hero{min-height:auto}.hero-copy{padding:65px 0 40px}.hero h1{font-size:62px}.hero-notes{grid-template-columns:1fr;gap:12px}.hero-visual{min-height:430px}.gold-frame{right:5%;width:90%;height:82%}.featurebar{grid-template-columns:1fr 1fr}.feature{min-height:100px;padding:18px 12px}.section{padding:70px 0}.section-head h2{font-size:46px}.catalog,.about-grid,.info-grid,.contacts{grid-template-columns:1fr}.about-photo{height:390px}.stats{grid-template-columns:1fr 1fr}.product-modal{grid-template-columns:1fr}.product-info{border-left:0;border-top:1px solid var(--line)}.gallery-main{height:360px}.chat-box{display:none}}
+:root{--bg:#050505;--panel:#0b0b0b;--gold:#b98928;--gold2:#e6b94f;--gold3:#f1d27a;--cream:#f5f0e5;--muted:#9b958a;--line:#28231b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:Manrope,Arial,sans-serif}a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}.wrap{width:min(1240px,calc(100% - 44px));margin:auto}.gold{color:var(--gold2)}.serif{font-family:"Cormorant Garamond",serif}
+header{position:sticky;top:0;z-index:50;background:rgba(5,5,5,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:82px;display:grid;grid-template-columns:220px 1fr 130px;align-items:center;gap:20px}.brand{height:70px;display:flex;align-items:center}.brand img{width:175px;height:68px;object-fit:contain;object-position:left center}.navlinks{display:flex;justify-content:center;gap:28px;height:100%;align-items:center}.navlinks a{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#d6d0c5}.navlinks a:hover,.navlinks a.active{color:var(--gold2)}.nav-actions{display:flex;justify-content:flex-end;gap:8px}.nav-icon{width:34px;height:34px;border:1px solid var(--line);background:#080808;color:var(--gold2);display:grid;place-items:center;border-radius:50%;cursor:pointer}
+.hero{min-height:650px;display:grid;grid-template-columns:48% 52%;border-bottom:1px solid var(--line);overflow:hidden}.hero-copy{padding:78px 45px 65px 0;position:relative;z-index:3}.kicker{font-size:10px;letter-spacing:3px;color:var(--gold2);font-weight:700;text-transform:uppercase}.hero h1{font:600 clamp(48px,5.2vw,76px)/.86 "Cormorant Garamond",serif;letter-spacing:-1.5px;text-transform:uppercase;margin:18px 0}.hero h1 span{color:var(--gold2)}.hero-rule{display:flex;align-items:center;gap:12px;margin:20px 0}.hero-rule i{width:50px;height:1px;background:var(--gold2)}.hero-rule b{width:5px;height:5px;background:var(--gold2);transform:rotate(45deg)}.hero p{max-width:500px;color:#aaa49a;line-height:1.8;font-size:13px}.actions{display:flex;gap:10px;margin:26px 0 34px;flex-wrap:wrap}.btn{border:1px solid var(--gold);background:transparent;color:var(--cream);padding:13px 21px;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;cursor:pointer}.btn:hover{border-color:var(--gold3)}.btn.primary{background:linear-gradient(135deg,#edc55e,#a87418);color:#080808}.hero-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:600px}.hero-note{border-left:1px solid var(--gold);padding-left:10px}.hero-note b{display:block;color:var(--gold2);font-size:9px;letter-spacing:1px;text-transform:uppercase}.hero-note span{display:block;color:#777168;font-size:9px;margin-top:5px;line-height:1.5}
+.hero-visual{position:relative;min-height:650px;overflow:hidden;background:#080807;display:flex;align-items:center;justify-content:center}.hero-photo{position:relative;z-index:2;width:100%;height:100%;padding:18px 28px;object-fit:contain;object-position:center;filter:none;opacity:1;display:block}.hero-visual:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(193,145,43,.12),transparent 48%);pointer-events:none}.hero-photo-mask{display:none}.gold-frame{position:absolute;z-index:3;right:7%;top:7%;width:86%;height:86%;border:1px solid rgba(230,185,79,.28);pointer-events:none}.gold-frame:before,.gold-frame:after{content:"";position:absolute;width:38px;height:38px;border-color:var(--gold2);border-style:solid}.gold-frame:before{left:-1px;top:-1px;border-width:1px 0 0 1px}.gold-frame:after{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
+.featurebar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:#080808}.feature{min-height:100px;padding:22px 18px;display:flex;align-items:center;gap:13px;border-right:1px solid var(--line)}.feature:last-child{border-right:0}.feature .icon{width:36px;height:36px;border:1px solid #6d531f;color:var(--gold2);display:grid;place-items:center;border-radius:50%;font-size:15px;flex:none}.feature b{display:block;font-size:9px;letter-spacing:1.1px;color:var(--gold2);text-transform:uppercase}.feature span{display:block;color:#777168;font-size:9px;margin-top:5px}
+.section{padding:76px 0;border-bottom:1px solid var(--line)}.section-head{text-align:center;margin-bottom:32px}.section-head h2{font:600 48px/.95 "Cormorant Garamond",serif;text-transform:uppercase;margin:9px 0 12px}.section-head p{color:#777168;font-size:11px}.filters{display:flex;justify-content:center;gap:7px;margin-bottom:26px;flex-wrap:wrap}.filter{padding:9px 15px;border:1px solid var(--line);background:#080808;color:#888177;font-size:8px;letter-spacing:1.3px;text-transform:uppercase;cursor:pointer}.filter.active,.filter:hover{color:var(--gold2);border-color:var(--gold)}
+.catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(180deg,#0d0d0c,#070707);border:1px solid var(--line);overflow:hidden}.card-media{height:300px;background:#090909;padding:10px;position:relative;overflow:hidden}.card-media img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}.card:hover .card-media img{transform:scale(1.02)}.badge{position:absolute;left:12px;top:12px;background:#0b0b0b;border:1px solid var(--gold);color:var(--gold2);padding:5px 7px;font-size:7px;letter-spacing:1px}.card-body{padding:17px}.card-tag{color:var(--gold2);font-size:7px;letter-spacing:1.5px;text-transform:uppercase}.card h3{font:600 25px/1 "Cormorant Garamond",serif;margin:7px 0 8px}.card p{color:#787269;font-size:9px;line-height:1.6;min-height:32px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.price{color:var(--gold2);font-weight:700;font-size:17px}.mini-btn{border:1px solid #574317;background:transparent;color:var(--gold2);padding:8px 10px;font-size:7px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.about-grid{display:grid;grid-template-columns:44% 56%;gap:48px;align-items:center}.about-photo{height:440px;position:relative;overflow:hidden;border:1px solid var(--line);background:#080808}.about-photo img{width:100%;height:100%;object-fit:cover;display:block}.about-photo:after{content:"";position:absolute;inset:16px;border:1px solid rgba(230,185,79,.25)}.about-copy h2{text-align:left;margin-bottom:10px}.about-copy p{color:#9a9389;line-height:1.85;font-size:12px}.ornament{display:flex;align-items:center;gap:10px;margin:18px 0}.ornament i{height:1px;width:40px;background:var(--gold2)}.ornament b{width:5px;height:5px;background:var(--gold2);transform:rotate(45deg)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}.stat{border-top:1px solid var(--gold);padding-top:10px}.stat strong{display:block;color:var(--gold2);font:600 28px "Cormorant Garamond",serif}.stat span{font-size:8px;letter-spacing:.8px;text-transform:uppercase;color:#716b62}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.info{padding:26px;border:1px solid var(--line);background:#090909;min-height:175px}.info .number{color:#604a1d;font:600 32px "Cormorant Garamond",serif}.info h3{color:var(--gold2);font:600 27px "Cormorant Garamond",serif;margin:4px 0 7px}.info p{color:#807a70;font-size:10px;line-height:1.8}.contacts{display:grid;grid-template-columns:1fr 1fr;gap:14px}.contact-card{border:1px solid var(--line);background:#090909;padding:30px}.contact-card h3{font:600 39px/.9 "Cormorant Garamond",serif;margin:10px 0 20px}.contact-line{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:11px;color:#9b958a}.contact-line b{color:var(--gold2);min-width:78px}.telegram{color:var(--gold2)}footer{padding:26px 0;text-align:center;color:#625e56;font-size:8px;letter-spacing:1.4px}
+.chat{position:fixed;right:20px;bottom:18px;z-index:60}.chat-box{position:absolute;right:64px;bottom:0;width:210px;background:#10100f;border:1px solid var(--line);padding:13px;font-size:9px;color:#99938a}.chat-box b{color:var(--gold2)}.chat-btn{width:54px;height:54px;border-radius:50%;border:1px solid #9c711d;background:linear-gradient(135deg,#f0c45d,#ad7617);color:#090909;font-size:20px;cursor:pointer}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;align-items:center;justify-content:center;padding:16px}.modal.open{display:flex}.modal-box{width:min(900px,100%);max-height:92vh;overflow:auto;background:#0a0a09;border:1px solid #6d521d;position:relative}.close{position:absolute;right:10px;top:5px;border:0;background:none;color:#d8d0c4;font-size:28px;cursor:pointer;z-index:3}.product-modal{display:grid;grid-template-columns:1fr 1fr}.gallery{padding:16px}.gallery-main{height:420px;background:#080808;border:1px solid var(--line);overflow:hidden}.gallery-main img{width:100%;height:100%;object-fit:contain;display:block}.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px}.thumbs img{height:72px;width:100%;object-fit:cover;border:1px solid var(--line);cursor:pointer}.thumbs img.active{border-color:var(--gold2)}.product-info{padding:42px 30px 30px;border-left:1px solid var(--line)}.product-info h3{font:600 43px/.9 "Cormorant Garamond",serif;margin:10px 0}.product-info .big-price{font-size:24px;color:var(--gold2);font-weight:700;margin:20px 0}.specs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:20px 0}.spec{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:9px}.spec:last-child{border-bottom:0}.spec span:first-child{color:#716b62}.spec span:last-child{color:#d4cec2;text-align:right}.order-form{display:none;padding:30px}.order-form.open{display:block}.order-form h3{font:600 40px "Cormorant Garamond",serif;margin:7px 0}.order-form p{color:#817a70;font-size:10px;line-height:1.7}.field{width:100%;background:#060606;border:1px solid var(--line);color:#fff;padding:12px;margin:5px 0;outline:none}.field:focus{border-color:var(--gold)}.back{border:0;background:none;color:#8d857a;font-size:9px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;margin-bottom:12px}
+@media(max-width:1050px){.nav{grid-template-columns:190px 1fr}.nav-actions{display:none}.navlinks{gap:18px}.catalog{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.hero-copy{padding-right:0}.hero-visual{min-height:560px}.hero-photo{padding:15px 40px}}
+@media(max-width:720px){.wrap{width:calc(100% - 28px)}.nav{height:74px;display:flex}.brand img{width:155px;height:62px}.navlinks{display:none}.hero{min-height:auto}.hero-copy{padding:55px 0 38px}.hero h1{font-size:50px;line-height:.88}.hero-notes{grid-template-columns:1fr;gap:10px}.hero-visual{min-height:430px}.hero-photo{padding:10px 22px}.gold-frame{right:4%;width:92%;height:88%}.featurebar{grid-template-columns:1fr 1fr}.feature{min-height:90px;padding:16px 10px}.section{padding:62px 0}.section-head h2{font-size:40px}.catalog,.about-grid,.info-grid,.contacts{grid-template-columns:1fr}.about-photo{height:360px}.stats{grid-template-columns:1fr 1fr}.product-modal{grid-template-columns:1fr}.product-info{border-left:0;border-top:1px solid var(--line)}.gallery-main{height:350px}.chat-box{display:none}}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#home"><img src="assets/logo.png" alt="AURUM TIME"></a>
-    <nav class="navlinks">
-      <a class="active" href="#home">Головна</a>
-      <a href="#catalog">Каталог</a>
-      <a href="#about">Про нас</a>
-      <a href="#delivery">Доставка і оплата</a>
-      <a href="#contacts">Контакти</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="nav-icon" onclick="scrollToId('catalog')" aria-label="Каталог">⌕</button>
-      <button class="nav-icon" onclick="openOrder()" aria-label="Замовити">♡</button>
-      <button class="nav-icon" onclick="openProduct('A005')" aria-label="Товар">◈</button>
-    </div>
-  </div>
-</header>
-
+<header><div class="wrap nav"><a class="brand" href="#home"><img src="assets/logo.png" alt="AURUM TIME"></a><nav class="navlinks"><a class="active" href="#home">Головна</a><a href="#catalog">Каталог</a><a href="#about">Про нас</a><a href="#delivery">Доставка і оплата</a><a href="#contacts">Контакти</a></nav><div class="nav-actions"><button class="nav-icon" onclick="scrollToId('catalog')">⌕</button><button class="nav-icon" onclick="openOrder()">♡</button></div></div></header>
 <main id="home">
-<section class="wrap hero">
-  <div class="hero-copy">
-    <div class="kicker">AURUM TIME</div>
-    <h1>ЧАС,<br><span>ЯКИЙ ПІДКРЕСЛЮЄ</span><br>ВАШ СТИЛЬ</h1>
-    <div class="hero-rule"><i></i><b></b></div>
-    <p>Колекція годинників для тих, хто цінує характер, деталі та впевненість у кожному русі. AURUM TIME — про стиль, а не про зайві слова.</p>
-    <div class="actions">
-      <a class="btn primary" href="#catalog">Переглянути каталог →</a>
-      <a class="btn" href="#about">Про AURUM TIME</a>
-    </div>
-    <div class="hero-notes">
-      <div class="hero-note"><b>01 · Якість</b><span>Кожну модель перевіряємо перед відправкою.</span></div>
-      <div class="hero-note"><b>02 · Доставка</b><span>Відправлення по Україні після підтвердження.</span></div>
-      <div class="hero-note"><b>03 · Упаковка</b><span>Подарункова — за бажанням клієнта, окремо.</span></div>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <img class="hero-photo" src="assets/watch-1.jpg" alt="Годинник AURUM TIME">
-    <div class="hero-photo-mask"></div><div class="gold-frame"></div>
-  </div>
-</section>
-
-<section class="wrap featurebar">
-  <div class="feature"><div class="icon">✥</div><div><b>ВІДБІР МОДЕЛЕЙ</b><span>Фокус на стилі та деталях</span></div></div>
-  <div class="feature"><div class="icon">✓</div><div><b>ПЕРЕВІРКА</b><span>Перед кожною відправкою</span></div></div>
-  <div class="feature"><div class="icon">↗</div><div><b>ДОСТАВКА</b><span>По Україні</span></div></div>
-  <div class="feature"><div class="icon">✦</div><div><b>КОНТАКТ</b><span>Telegram @Aurum_Taim</span></div></div>
-</section>
-
-<section class="section" id="catalog">
-  <div class="wrap">
-    <div class="section-head"><div class="kicker">КАТАЛОГ</div><h2>Наша колекція</h2><p>Каталог різних годинників AURUM TIME: від класики до хронографів і мінімалістичних моделей.</p></div>
-    <div class="filters">
-      <button class="filter active" data-filter="all">Усі моделі</button><button class="filter" data-filter="classic">Класичні</button><button class="filter" data-filter="chrono">Хронографи</button><button class="filter" data-filter="minimal">Мінімалізм</button>
-    </div>
-    <div class="catalog">
-      <article class="card" data-category="chrono">
-        <div class="card-media"><span class="badge">A005 · NEW</span><img src="assets/watch-4.jpg" alt="Годинник A005 Premium Gift Edition — AURUM TIME"></div>
-        <div class="card-body"><div class="card-tag">A005 · ПРЕМІАЛЬНА СЕРІЯ</div><h3>A005 Premium Edition</h3><p>Чоловічий кварцовий годинник A005. Сталевий корпус, чорний циферблат, металевий браслет. Реальні фото товару.</p><div class="price-row"><span class="price">1 299 грн</span><button class="mini-btn" onclick="openProduct('A005')">Детальніше</button></div></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="wrap about-grid">
-    <div class="about-photo"><img src="assets/watch-4.jpg" alt="AURUM TIME — модель у подарунковій коробці"></div>
-    <div class="about-copy">
-      <div class="kicker">ПРО AURUM TIME</div>
-      <h2 class="section-head" style="text-align:left;margin:12px 0 0"><span style="font:600 58px/.9 'Cormorant Garamond',serif">Більше, ніж просто годинники</span></h2>
-      <div class="ornament"><i></i><b></b></div>
-      <p>AURUM TIME — магазин стильних годинників, який будує колекцію поступово. Для нас важливіше показати реальний товар, чесно описати модель та зробити покупку зрозумілою.</p>
-      <p>Каталог містить різні моделі годинників, включно з A005 за 1299 грн. Подарункова упаковка доступна <strong class="gold">за бажанням клієнта</strong> і оплачується окремо.</p>
-      <div class="stats">
-        <div class="stat"><strong>01</strong><span>модель у каталозі</span></div>
-        <div class="stat"><strong>100%</strong><span>перевірка перед відправкою</span></div>
-        <div class="stat"><strong>24/7</strong><span>можна написати в Telegram</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="delivery">
-  <div class="wrap">
-    <div class="section-head"><div class="kicker">СЕРВІС</div><h2>Доставка та оплата</h2><p>Все необхідне — коротко і без прихованих умов.</p></div>
-    <div class="info-grid">
-      <div class="info"><div class="number">01</div><h3>Доставка</h3><p>Відправляємо по Україні. Спосіб і термін доставки погоджуємо під час підтвердження замовлення.</p></div>
-      <div class="info"><div class="number">02</div><h3>Оплата</h3><p>Зручний спосіб оплати узгоджуємо перед відправленням. Усі деталі повідомляємо клієнту.</p></div>
-      <div class="info"><div class="number">03</div><h3>Упаковка</h3><p><strong class="gold">Подарункова упаковка не безкоштовна.</strong> Додається тільки за бажанням клієнта та оплачується окремо.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="contacts">
-  <div class="wrap contacts">
-    <div class="contact-card">
-      <div class="kicker">КОНТАКТИ</div><h3>Ми на зв'язку</h3>
-      <div class="contact-line"><b>Telegram</b><a class="telegram" href="https://t.me/Aurum_Taim" target="_blank" rel="noopener">@Aurum_Taim ↗</a></div>
-      <div class="contact-line"><b>Онлайн-чат</b><span>Кнопка внизу праворуч</span></div>
-      <div class="contact-line"><b>Графік</b><span>Щодня · 09:00–21:00</span></div>
-    </div>
-    <div class="contact-card">
-      <div class="kicker">ЗАМОВЛЕННЯ</div><h3>Обрати свою модель</h3>
-      <p style="color:#817a70;line-height:1.8;font-size:12px">Подивіться детальні фото, натисніть «Замовити», залиште контакт — і ми підтвердимо наявність та деталі.</p>
-      <button class="btn primary" onclick="scrollToId('catalog')">Переглянути каталог →</button>
-    </div>
-  </div>
-</section>
+<section class="wrap hero"><div class="hero-copy"><div class="kicker">AURUM TIME · WATCH COLLECTION</div><h1>ЧАС,<br><span>ЯКИЙ ПІДКРЕСЛЮЄ</span><br>ВАШ СТИЛЬ</h1><div class="hero-rule"><i></i><b></b></div><p>Преміальний каталог стильних годинників. Кожна модель має власну картку, ціну, характеристики та реальні фотографії товару.</p><div class="actions"><a class="btn primary" href="#catalog">Переглянути каталог →</a><a class="btn" href="#about">Про AURUM TIME</a></div><div class="hero-notes"><div class="hero-note"><b>01 · Якість</b><span>Кожну модель перевіряємо перед відправкою.</span></div><div class="hero-note"><b>02 · Доставка</b><span>Відправлення по Україні після підтвердження.</span></div><div class="hero-note"><b>03 · Упаковка</b><span>Подарункова — за бажанням клієнта, окремо.</span></div></div></div><div class="hero-visual"><img class="hero-photo" src="assets/watch-1.jpg" alt="Годинник AURUM TIME"><div class="hero-photo-mask"></div><div class="gold-frame"></div></div></section>
+<section class="wrap featurebar"><div class="feature"><div class="icon">✥</div><div><b>ВІДБІР МОДЕЛЕЙ</b><span>Фокус на стилі та деталях</span></div></div><div class="feature"><div class="icon">✓</div><div><b>ПЕРЕВІРКА</b><span>Перед кожною відправкою</span></div></div><div class="feature"><div class="icon">↗</div><div><b>ДОСТАВКА</b><span>По Україні</span></div></div><div class="feature"><div class="icon">✦</div><div><b>КОНТАКТ</b><span>Telegram @Aurum_Taim</span></div></div></section>
+<section class="section" id="catalog"><div class="wrap"><div class="section-head"><div class="kicker">КАТАЛОГ</div><h2>Наша колекція</h2><p>Каталог різних годинників AURUM TIME.</p></div><div class="filters"><button class="filter active" data-filter="all">Усі моделі</button><button class="filter" data-filter="chrono">Хронографи</button></div><div class="catalog"><article class="card" data-category="chrono"><div class="card-media"><span class="badge">A005 · NEW</span><img src="assets/watch-4.jpg" alt="A005 Premium Edition"></div><div class="card-body"><div class="card-tag">A005 · ПРЕМІАЛЬНА СЕРІЯ</div><h3>A005 Premium Edition</h3><p>Кварцовий годинник, сталевий корпус, чорний циферблат та металевий браслет.</p><div class="price-row"><span class="price">1 299 грн</span><button class="mini-btn" onclick="openProduct('A005')">Детальніше</button></div></div></article></div></div></section>
+<section class="section" id="about"><div class="wrap about-grid"><div class="about-photo"><img src="assets/watch-4.jpg" alt="AURUM TIME — годинник у коробці"></div><div class="about-copy"><div class="kicker">ПРО AURUM TIME</div><h2 class="section-head" style="text-align:left;margin:10px 0"><span style="font:600 48px/.95 'Cormorant Garamond',serif">Більше, ніж просто годинники</span></h2><div class="ornament"><i></i><b></b></div><p>AURUM TIME — магазин стильних годинників, який поступово формує власну колекцію. Для нас важливо показувати реальний товар, чесно описувати модель та робити покупку зрозумілою.</p><p>Подарункова упаковка доступна <strong class="gold">за бажанням клієнта</strong> та оплачується окремо.</p><div class="stats"><div class="stat"><strong>01</strong><span>модель у каталозі</span></div><div class="stat"><strong>100%</strong><span>перевірка перед відправкою</span></div><div class="stat"><strong>24/7</strong><span>можна написати в Telegram</span></div></div></div></div></section>
+<section class="section" id="delivery"><div class="wrap"><div class="section-head"><div class="kicker">СЕРВІС</div><h2>Доставка та оплата</h2><p>Все необхідне — коротко і без прихованих умов.</p></div><div class="info-grid"><div class="info"><div class="number">01</div><h3>Доставка</h3><p>Відправляємо по Україні. Спосіб і термін погоджуємо під час підтвердження замовлення.</p></div><div class="info"><div class="number">02</div><h3>Оплата</h3><p>Зручний спосіб оплати узгоджуємо перед відправленням.</p></div><div class="info"><div class="number">03</div><h3>Упаковка</h3><p><strong class="gold">Подарункова упаковка платна</strong> та додається тільки за бажанням.</p></div></div></div></section>
+<section class="section" id="contacts"><div class="wrap contacts"><div class="contact-card"><div class="kicker">КОНТАКТИ</div><h3>Ми на зв'язку</h3><div class="contact-line"><b>Telegram</b><a class="telegram" href="https://t.me/Aurum_Taim" target="_blank" rel="noopener">@Aurum_Taim ↗</a></div><div class="contact-line"><b>Онлайн-чат</b><span>Кнопка внизу праворуч</span></div><div class="contact-line"><b>Графік</b><span>Щодня · 09:00–21:00</span></div></div><div class="contact-card"><div class="kicker">ЗАМОВЛЕННЯ</div><h3>Обрати свою модель</h3><p style="color:#817a70;line-height:1.8;font-size:11px">Подивіться детальні фото, натисніть «Замовити», залиште контакт — і ми підтвердимо деталі.</p><button class="btn primary" onclick="scrollToId('catalog')">Переглянути каталог →</button></div></div></section>
 </main>
-
 <footer>© 2026 AURUM TIME · TIME IS STYLE</footer>
-
-<div class="chat">
-  <div class="chat-box"><b>AURUM TIME</b><br>Є питання? Напишіть нам у Telegram — допоможемо з вибором.</div>
-  <button class="chat-btn" onclick="openOrder()">✉</button>
-</div>
-
-<div class="modal" id="productModal">
-  <div class="modal-box">
-    <button class="close" onclick="closeProduct()">×</button>
-    <div id="productView" class="product-modal">
-      <div class="gallery">
-        <div class="gallery-main"><img id="mainPhoto" src="assets/watch-1.jpg" alt="AURUM TIME"></div>
-        <div class="thumbs">
-          <img class="active" src="assets/watch-1.jpg" onclick="setPhoto(this)" alt="">
-          <img src="assets/watch-2.jpg" onclick="setPhoto(this)" alt="">
-          <img src="assets/watch-3.jpg" onclick="setPhoto(this)" alt="">
-          <img src="assets/watch-4.jpg" onclick="setPhoto(this)" alt="">
-        </div>
-      </div>
-      <div class="product-info">
-        <div class="kicker" id="productKicker">AURUM TIME · АНАЛОГ</div>
-        <h3 id="productTitle">Chronograph<br>Black Steel</h3>
-        <div class="big-price" id="productPrice">1 499 грн</div>
-        <p id="productDescription" style="color:#817a70;font-size:11px;line-height:1.8">Чоловіча модель із темним циферблатом, металевим браслетом та хронографічним дизайном. Реальні фото товару.</p>
-        <div class="specs">
-          <div class="spec"><span>Категорія</span><span id="productCategory">Чоловічий хронограф</span></div>
-          <div class="spec"><span>Корпус</span><span id="productCase">Металевий</span></div>
-          <div class="spec"><span>Браслет</span><span id="productBracelet">Металевий</span></div>
-          <div class="spec"><span>Упаковка</span><span>Подарункова — тільки за бажанням і за доплату</span></div>
-        </div>
-        <button class="btn primary" style="width:100%" onclick="showOrderForm()">Замовити цей годинник →</button>
-      </div>
-    </div>
-    <div id="orderView" class="order-form">
-      <button class="back" onclick="showProduct()">← Назад до товару</button>
-      <div class="kicker">AURUM TIME</div><h3>Замовлення</h3>
-      <p>Залиште контакти. Після заявки ми зв'яжемося з вами в Telegram або за вказаним номером.</p>
-      <form onsubmit="submitOrder(event)">
-        <input class="field" id="name" placeholder="Ваше ім'я" required>
-        <input class="field" id="contact" placeholder="Телефон або Telegram" required>
-        <textarea class="field" id="comment" placeholder="Коментар: модель, розмір зап'ястя, чи потрібна платна подарункова упаковка" style="height:100px"></textarea>
-        <button class="btn primary" style="width:100%">Надіслати заявку</button>
-      </form>
-    </div>
-  </div>
-</div>
-
+<div class="chat"><div class="chat-box"><b>AURUM TIME</b><br>Є питання? Напишіть нам у Telegram — допоможемо з вибором.</div><button class="chat-btn" onclick="openOrder()">✉</button></div>
+<div class="modal" id="productModal"><div class="modal-box"><button class="close" onclick="closeProduct()">×</button><div id="productView" class="product-modal"><div class="gallery"><div class="gallery-main"><img id="mainPhoto" src="assets/watch-1.jpg" alt="AURUM TIME"></div><div class="thumbs"><img class="active" src="assets/watch-1.jpg" onclick="setPhoto(this)" alt=""><img src="assets/watch-2.jpg" onclick="setPhoto(this)" alt=""><img src="assets/watch-3.jpg" onclick="setPhoto(this)" alt=""><img src="assets/watch-4.jpg" onclick="setPhoto(this)" alt=""></div></div><div class="product-info"><div class="kicker" id="productKicker">AURUM TIME · A005 · NEW</div><h3 id="productTitle">A005 Premium<br>Edition</h3><div class="big-price" id="productPrice">1 299 грн</div><p id="productDescription" style="color:#817a70;font-size:10px;line-height:1.8">Тип механізму: кварцовий. Корпус: сталевий. Скло: мінеральне, антиподряпинне. Ширина браслета: 2.1 см. Застібка: класичний метелик. Довжина браслета: регулюється. Діаметр циферблата: 4.2 см. Товщина: 1 см. Функції: години, хвилини, секунди, календар.</p><div class="specs"><div class="spec"><span>Категорія</span><span id="productCategory">Преміальна серія A005</span></div><div class="spec"><span>Корпус</span><span id="productCase">Сталевий</span></div><div class="spec"><span>Браслет</span><span id="productBracelet">Металевий, 2.1 см</span></div><div class="spec"><span>Упаковка</span><span>Подарункова — за бажанням і за доплату</span></div></div><button class="btn primary" style="width:100%" onclick="showOrderForm()">Замовити цей годинник →</button></div></div><div id="orderView" class="order-form"><button class="back" onclick="showProduct()">← Назад до товару</button><div class="kicker">AURUM TIME</div><h3>Замовлення</h3><p>Залиште контакти. Після заявки ми зв'яжемося з вами в Telegram або за вказаним номером.</p><form onsubmit="submitOrder(event)"><input class="field" id="name" placeholder="Ваше ім'я" required><input class="field" id="contact" placeholder="Телефон або Telegram" required><textarea class="field" id="comment" placeholder="Коментар: чи потрібна платна подарункова упаковка" style="height:100px"></textarea><button class="btn primary" style="width:100%">Надіслати заявку</button></form></div></div></div>
 <script>
-const products={
-  A005:{kicker:'AURUM TIME · A005 · NEW',title:'A005 Premium<br>Edition',price:'1 299 грн',description:'Тип механізму: кварцовий. Корпус: сталевий. Скло: мінеральне, антиподряпинне. Ширина браслета: 2.1 см. Застібка: метелик. Довжина браслета: регулюється. Діаметр циферблата: 4.2 см. Товщина циферблата: 1 см. Функції: години, хвилини, секунди, календар.',category:'Преміальна серія A005',case:'Сталевий',bracelet:'Металевий, 2.1 см',photos:['assets/watch-1.jpg','assets/watch-2.jpg','assets/watch-3.jpg','assets/watch-4.jpg']}
-};
+const products={A005:{kicker:'AURUM TIME · A005 · NEW',title:'A005 Premium<br>Edition',price:'1 299 грн',description:'Тип механізму: кварцовий. Корпус: сталевий. Скло: мінеральне, антиподряпинне. Ширина браслета: 2.1 см. Застібка: класичний метелик. Довжина браслета: регулюється. Діаметр циферблата: 4.2 см. Товщина: 1 см. Функції: години, хвилини, секунди, календар.',category:'Преміальна серія A005',case:'Сталевий',bracelet:'Металевий, 2.1 см',photos:['assets/watch-1.jpg','assets/watch-2.jpg','assets/watch-3.jpg','assets/watch-4.jpg']}};
 let selectedProduct='A005';
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-function renderProduct(code='A001'){
-  const product=products[code]||products.A001;
-  selectedProduct=code;
-  document.getElementById('mainPhoto').src=product.photos[0];
-  document.getElementById('productKicker').textContent=product.kicker;
-  document.getElementById('productTitle').innerHTML=product.title;
-  document.getElementById('productPrice').textContent=product.price;
-  document.getElementById('productDescription').textContent=product.description;
-  document.getElementById('productCategory').textContent=product.category;
-  document.getElementById('productCase').textContent=product.case;
-  document.getElementById('productBracelet').textContent=product.bracelet;
-  document.querySelectorAll('.thumbs img').forEach((img,index)=>{img.src=product.photos[index];img.classList.toggle('active',index===0);});
-}
-function openProduct(code='A005'){renderProduct(code);document.getElementById('productModal').classList.add('open');showProduct();}
-function closeProduct(){document.getElementById('productModal').classList.remove('open');}
-function setPhoto(el){document.querySelectorAll('.thumbs img').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('mainPhoto').src=el.src;}
-function showOrderForm(){document.getElementById('productView').style.display='none';document.getElementById('orderView').classList.add('open');}
-function showProduct(){document.getElementById('productView').style.display='grid';document.getElementById('orderView').classList.remove('open');}
-function openOrder(){openProduct(selectedProduct);showOrderForm();}
-function submitOrder(e){
-  e.preventDefault();
-  const name=document.getElementById('name').value.trim();
-  const contact=document.getElementById('contact').value.trim();
-  const comment=document.getElementById('comment').value.trim();
-  const product=products[selectedProduct];
-  const text=`AURUM TIME — замовлення
-Модель: ${selectedProduct} · ${product.price}
-Ім'я: ${name}
-Контакт: ${contact}
-Подарункова упаковка: тільки за бажанням, платна
-Коментар: ${comment||'—'}`;
-  navigator.clipboard?.writeText(text).catch(()=>{});
-  window.open('https://t.me/Aurum_Taim','_blank','noopener');
-  alert('Дякуємо! Telegram відкрито. Надішліть нам скопійований текст заявки.');
-}
-document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{
-  document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
-  button.classList.add('active');
-  const filter=button.dataset.filter;
-  document.querySelectorAll('.catalog .card[data-category]').forEach(card=>{card.style.display=filter==='all'||card.dataset.category===filter?'block':'none';});
-}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProduct();});
-document.getElementById('productModal').addEventListener('click',e=>{if(e.target.id==='productModal')closeProduct();});
+function renderProduct(code='A005'){const p=products[code]||products.A005;selectedProduct=code;document.getElementById('mainPhoto').src=p.photos[0];document.getElementById('productKicker').textContent=p.kicker;document.getElementById('productTitle').innerHTML=p.title;document.getElementById('productPrice').textContent=p.price;document.getElementById('productDescription').textContent=p.description;document.getElementById('productCategory').textContent=p.category;document.getElementById('productCase').textContent=p.case;document.getElementById('productBracelet').textContent=p.bracelet;document.querySelectorAll('.thumbs img').forEach((img,i)=>{img.src=p.photos[i];img.classList.toggle('active',i===0);});}
+function openProduct(code='A005'){renderProduct(code);document.getElementById('productModal').classList.add('open');showProduct();}function closeProduct(){document.getElementById('productModal').classList.remove('open');}function setPhoto(el){document.querySelectorAll('.thumbs img').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('mainPhoto').src=el.src;}function showOrderForm(){document.getElementById('productView').style.display='none';document.getElementById('orderView').classList.add('open');}function showProduct(){document.getElementById('productView').style.display='grid';document.getElementById('orderView').classList.remove('open');}function openOrder(){openProduct(selectedProduct);showOrderForm();}
+function submitOrder(e){e.preventDefault();const name=document.getElementById('name').value.trim();const contact=document.getElementById('contact').value.trim();const comment=document.getElementById('comment').value.trim();const p=products[selectedProduct];const text=`AURUM TIME — замовлення\nМодель: ${selectedProduct} · ${p.price}\nІм'я: ${name}\nКонтакт: ${contact}\nПодарункова упаковка: тільки за бажанням, платна\nКоментар: ${comment||'—'}`;navigator.clipboard?.writeText(text).catch(()=>{});window.open('https://t.me/Aurum_Taim','_blank','noopener');alert('Дякуємо! Telegram відкрито. Надішліть нам скопійований текст заявки.');}
+document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));button.classList.add('active');const f=button.dataset.filter;document.querySelectorAll('.catalog .card[data-category]').forEach(card=>card.style.display=f==='all'||card.dataset.category===f?'block':'none');}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProduct();});document.getElementById('productModal').addEventListener('click',e=>{if(e.target.id==='productModal')closeProduct();});
 </script>
 </body>
 </html>
