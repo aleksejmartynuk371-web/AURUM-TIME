@@ -1,0 +1,37 @@
+name: Fix catalog
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix catalog to one A005 product with four photos
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('AURUM_TIME_v8/index.html')
+          s=p.read_text()
+          start=s.index('    <div class="catalog">')
+          end=s.index('    </div>\n  </div>\n</section>\n\n<section class="section" id="about">', start)
+          catalog='''    <div class="catalog">\n      <article class="card" data-category="chrono">\n        <div class="card-media"><span class="badge">A005 · NEW</span><img src="assets/watch-4.jpg" alt="Годинник A005 Premium Gift Edition — AURUM TIME"></div>\n        <div class="card-body"><div class="card-tag">A005 · ПРЕМІАЛЬНА СЕРІЯ</div><h3>A005 Premium Edition</h3><p>Чоловічий кварцовий годинник A005. Сталевий корпус, чорний циферблат, металевий браслет. Реальні фото товару.</p><div class="price-row"><span class="price">1 299 грн</span><button class="mini-btn" onclick="openProduct('A005')">Детальніше</button></div></div>\n      </article>\n    </div>'''
+          s=s[:start]+catalog+s[end+len('    </div>'):]
+          s=s.replace('<div class="stats">\n        <div class="stat"><strong>04</strong><span>моделі у каталозі</span></div>', '<div class="stats">\n        <div class="stat"><strong>01</strong><span>модель у каталозі</span></div>')
+          a=s.index('const products={')
+          b=s.index('let selectedProduct=', a)
+          products="""const products={\n  A005:{kicker:'AURUM TIME · A005 · NEW',title:'A005 Premium<br>Edition',price:'1 299 грн',description:'Тип механізму: кварцовий. Корпус: сталевий. Скло: мінеральне, антиподряпинне. Ширина браслета: 2.1 см. Застібка: метелик. Довжина браслета: регулюється. Діаметр циферблата: 4.2 см. Товщина циферблата: 1 см. Функції: години, хвилини, секунди, календар.',category:'Преміальна серія A005',case:'Сталевий',bracelet:'Металевий, 2.1 см',photos:['assets/watch-1.jpg','assets/watch-2.jpg','assets/watch-3.jpg','assets/watch-4.jpg']}\n};\n"""
+          s=s[:a]+products+s[b:]
+          s=s.replace("let selectedProduct='A001';", "let selectedProduct='A005';")
+          s=s.replace("function openProduct(code='A001')", "function openProduct(code='A005')")
+          p.write_text(s)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add AURUM_TIME_v8/index.html
+          git diff --cached --quiet || git commit -m 'Fix A005 catalog: one product with four photos'
+          git push
